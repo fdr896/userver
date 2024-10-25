@@ -514,11 +514,17 @@ function(userver_add_ubench_test)
   cmake_parse_arguments(
       ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
+  if(${UserverGBench_VERSION} VERSION_LESS "1.8.0")
+    set(BENCHMARK_MIN_TIME "0")
+  else()
+    set(BENCHMARK_MIN_TIME "0.0s")
+  endif()
+
   userver_add_utest(
       NAME "${ARG_NAME}"
       DATABASES ${ARG_DATABASES}
       TEST_ENV ${ARG_TEST_ENV}
-      TEST_ARGS --benchmark_min_time=0.0s --benchmark_color=no
+      TEST_ARGS --benchmark_min_time=${BENCHMARK_MIN_TIME} --benchmark_color=no
       DISABLE_GTEST_XML_OUTPUT ON
   )
 endfunction()
