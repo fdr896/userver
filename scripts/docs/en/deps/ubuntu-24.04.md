@@ -58,7 +58,6 @@ python3-protobuf
 python3-venv
 python3-voluptuous
 python3-yaml
-mongodb-mongosh
 ragel
 yasm
 zlib1g-dev
