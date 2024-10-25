@@ -11,7 +11,7 @@ set(ENABLE_LZ4_EXT OFF)
 
 _userver_module_begin(
     NAME RdKafka
-    VERSION 2.4.0
+    VERSION 2.3.0
     DEBIAN_NAMES librdkafka-dev
     FORMULA_NAMES librdkafka
     PACMAN_NAMES librdkafka
