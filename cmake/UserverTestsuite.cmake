@@ -516,7 +516,7 @@ function(userver_add_ubench_test)
       NAME "${ARG_NAME}"
       DATABASES ${ARG_DATABASES}
       TEST_ENV ${ARG_TEST_ENV}
-      TEST_ARGS --benchmark_min_time=0.0s --benchmark_color=no
+      TEST_ARGS --benchmark_min_time=0s --benchmark_color=no
       DISABLE_GTEST_XML_OUTPUT ON
   )
 endfunction()
