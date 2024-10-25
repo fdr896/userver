@@ -1,5 +1,5 @@
 _userver_module_begin(
-    NAME LZ4
+    NAME Lz4
     VERSION 1.9.2
     DEBIAN_NAMES liblz4-dev
     FORMULA_NAMES lz4
