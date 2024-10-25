@@ -232,14 +232,6 @@ jobs:
                 cd rabbitmq
                 ctest -V
 
-          - name: Run tests (mysql)
-            run: |
-                sudo apt install mariadb-server
-                cd build_debug
-                mkdir mysql || :
-                cd mysql
-                ctest -V
-
           - name: Run tests (postgresql)
             run: |
                 cd build_debug
@@ -262,6 +254,14 @@ jobs:
                 if [ -f ./userver-mongo-unittest ]; then ./userver-mongo-unittest ; fi
                 # Mongo is not available on Ubuntu 22.04 from default repos
                 if [ "${{matrix.os}}" != "ubuntu-22.04" ]; then ctest -V -R userver-mongo-mongotest ; fi
+          - name: Run tests (mysql)
+            run: |
+                sudo apt install mariadb-server
+                cd build_debug
+                mkdir mysql || :
+                cd mysql
+                ctest -V
+
 
           - name: Run tests (gRPC)
             # TODO: Sanitizer detects bool with value other than 1 or 0
