@@ -28,7 +28,6 @@ jobs:
                         -DUSERVER_NAMESPACE_BEGIN="namespace userver_ns { inline namespace
                         v1 {"
                         -DUSERVER_NAMESPACE_END="}}"
-                        -DUSERVER_FEATURE_KAFKA=0
                         -DUSERVER_PG_SERVER_INCLUDE_DIR=/usr/include/postgresql/16/server
                         -DUSERVER_PG_SERVER_LIBRARY_DIR=/usr/lib/postgresql/16/lib
                     os: ubuntu-24.04
@@ -131,16 +130,16 @@ jobs:
                   deb [arch=amd64 signed-by=/usr/share/keyrings/confluent.gpg] https://packages.confluent.io/deb/7.6 stable main\n\
                   deb [signed-by=/usr/share/keyrings/confluent.gpg] https://packages.confluent.io/clients/deb $(lsb_release -cs) main\n" \
                     | sudo tee /etc/apt/sources.list.d/confluent.list
-
-                  # Install Kafka
-                  sudo apt install -y default-jre
-                  curl https://dlcdn.apache.org/kafka/3.8.0/kafka_2.13-3.8.0.tgz -o kafka.tgz
-                  sudo mkdir -p /etc/kafka
-                  sudo tar xf kafka.tgz --directory=/etc/kafka
-                  sudo cp -r /etc/kafka/kafka_2.13-3.8.0/* /etc/kafka/
-                  sudo rm -rf /etc/kafka/kafka_2.13-3.8.0
-                  ls -lha /etc/kafka
                 fi
+                
+                # Install Kafka
+                sudo apt install -y default-jre
+                curl https://dlcdn.apache.org/kafka/3.8.0/kafka_2.13-3.8.0.tgz -o kafka.tgz
+                sudo mkdir -p /etc/kafka
+                sudo tar xf kafka.tgz --directory=/etc/kafka
+                sudo cp -r /etc/kafka/kafka_2.13-3.8.0/* /etc/kafka/
+                sudo rm -rf /etc/kafka/kafka_2.13-3.8.0
+                ls -lha /etc/kafka
 
                 sudo apt update
                 sudo apt install --allow-downgrades -y clickhouse-common-static redis-server postgresql $(cat scripts/docs/en/deps/${{matrix.os}}.md | tr '\n' ' ')
