@@ -14,6 +14,8 @@
 #include <userver/utils/log.hpp>
 #include <userver/field_options.pb.h>
 
+#include <userver/field_options.pb.h>
+
 USERVER_NAMESPACE_BEGIN
 
 namespace ugrpc::impl {
