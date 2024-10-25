@@ -8,6 +8,7 @@ find_package(OpenSSL COMPONENTS SSL Crypto REQUIRED)
 find_package(CURL REQUIRED)
 find_package(libz REQUIRED)
 find_package(libzstd REQUIRED)
+find_package(lz4 REQUIRED)
 
 if(NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
   if(USERVER_DOWNLOAD_PACKAGE_KAFKA)
@@ -36,9 +37,9 @@ CPMAddPackage(
   "WITH_SASL ON"
   "WITH CURL ON"
   "WITH_ZLIB ON"
-  "WITH_ZSTD OFF"
+  "WITH_ZSTD ON"
   "WITH_LIBDL OFF"
-  "ENABLE_LZ4_EXT OFF"
+  "ENABLE_LZ4_EXT ON"
 )
 
 set(KAFKA_CPM TRUE)
