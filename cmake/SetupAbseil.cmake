@@ -1,7 +1,7 @@
 # userver does not use Abseil directly, but some libraries need it.
 
 set(ABSL_PROPAGATE_CXX_STD ON)
-find_package(absl QUITE)
+find_package(absl QUIET)
 if(absl_FOUND)
   find_package(absl CONFIG REQUIRED)
   return()
