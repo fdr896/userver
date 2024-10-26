@@ -4,8 +4,8 @@ include(DownloadUsingCPM)
 
 CPMAddPackage(
     NAME abseil-cpp
-    VERSION 20230802.1
-    GIT_TAG 20230802.1
+    VERSION 20240722.0
+    GIT_TAG 20240722.0
     GITHUB_REPOSITORY abseil/abseil-cpp
     SYSTEM
     OPTIONS
