@@ -122,7 +122,7 @@ class UserverConan(ConanFile):
             self.requires('jemalloc/5.3.0')
         if self.options.with_grpc:
             self.requires(
-                'grpc/1.65.0', transitive_headers=True, transitive_libs=True,
+                'grpc/1.50.1', transitive_headers=True, transitive_libs=True,
             )
             self.requires(
                 'googleapis/cci.20230501',
@@ -152,7 +152,7 @@ class UserverConan(ConanFile):
         if self.options.with_clickhouse:
             self.requires('clickhouse-cpp/2.4.0')
             self.requires(
-                'abseil/20230125.3',
+                'abseil/20240116.1',
                 transitive_headers=True,
                 transitive_libs=True,
             )
