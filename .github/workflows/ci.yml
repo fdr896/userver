@@ -122,10 +122,6 @@ jobs:
                 echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" \
                       | sudo tee -a /etc/apt/sources.list.d/mongodb-org-7.0.list
                 # Mongo is not officially supported on Ubuntu 24.04, so install it from jammy
-                
-                # Install mongosh for testsuite
-                sudo apt update
-                sudo apt install mongodb-mongosh
 
                 if [ "${{matrix.os}}" != "ubuntu-24.04" ]; then
                   # Adding librdkafka confluent repositories as in https://docs.confluent.io/platform/current/installation/installing_cp/deb-ubuntu.html#get-the-software
@@ -267,19 +263,13 @@ jobs:
             # libbson unnecessarily overaligns structures and GCC-9 does not support overaligned new
             if: matrix.info != 'g++-9 + debug + sanitize addr+ub'
             run: |
+                sudo apt install mongodb-mongosh
                 cd build_debug
                 mkdir mongo || :
                 cd mongo
                 if [ -f ./userver-mongo-unittest ]; then ./userver-mongo-unittest ; fi
                 # Mongo is not available on Ubuntu 22.04 from default repos
                 if [ "${{matrix.os}}" != "ubuntu-22.04" ]; then ctest -V -R userver-mongo-mongotest ; fi
-          - name: Run tests (mysql)
-            run: |
-                sudo apt install mariadb-server
-                cd build_debug
-                mkdir mysql || :
-                cd mysql
-                ctest -V
 
 
           - name: Run tests (gRPC)
@@ -289,4 +279,14 @@ jobs:
                 cd build_debug
                 mkdir grpc || :
                 cd grpc
+                ctest -V
+
+          - name: Run tests (mysql)
+            # MySQL Benchmarks do not work on new Ubuntu
+            if: matrix.os != 'ubuntu-24.04'
+            run: |
+                sudo apt install mariadb-server
+                cd build_debug
+                mkdir mysql || :
+                cd mysql
                 ctest -V
