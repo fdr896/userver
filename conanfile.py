@@ -152,7 +152,7 @@ class UserverConan(ConanFile):
         if self.options.with_clickhouse:
             self.requires('clickhouse-cpp/2.4.0')
             self.requires(
-                'abseil/20240116.1',
+                'abseil/20230125.3',
                 transitive_headers=True,
                 transitive_libs=True,
             )
