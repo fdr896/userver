@@ -1,7 +1,8 @@
 # userver does not use Abseil directly, but some libraries need it.
 
-if(abseil-cpp_FOUND)
-  set(ABSL_PROPAGATE_CXX_STD ON)
+set(ABSL_PROPAGATE_CXX_STD ON)
+find_package(absl QUITE)
+if(absl_FOUND)
   find_package(absl CONFIG REQUIRED)
   return()
 endif()
