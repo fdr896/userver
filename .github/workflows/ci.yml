@@ -171,6 +171,9 @@ jobs:
                   sudo ln -sf /usr/bin/clang-format-14 /usr/bin/clang-format
                   clang-format --version
 
+                  # Use installed c-ares
+                  sudo apt remove libc-ares-dev
+
                   git clone --recursive -b v1.30.2 https://github.com/grpc/grpc new_grpc
                   cmake -S./new_grpc -B./new_grpc/build
                   cmake --build new_grpc/build -- -j$(nproc)
