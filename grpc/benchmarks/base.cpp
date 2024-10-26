@@ -267,7 +267,13 @@ void BatchOfNewClient(benchmark::State& state) {
     );
 }
 
-BENCHMARK(BatchOfNewClient)->DenseRange(1, 8)->Unit(benchmark::kMillisecond);
+#if defined(__has_feature)
+#if __has_feature(address_sanitizer)
+    BENCHMARK(BatchOfNewClient)->DenseRange(1, 1)->Unit(benchmark::kMillisecond);
+#else
+    BENCHMARK(BatchOfNewClient)->DenseRange(1, 8)->Unit(benchmark::kMillisecond);
+#endif
+#endif
 
 }  // namespace ugrpc
 
