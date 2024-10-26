@@ -173,7 +173,7 @@ jobs:
 
                   git clone --recursive -b v1.30.2 https://github.com/grpc/grpc new_grpc
                   cmake -S./new_grpc -B./new_grpc/build
-                  cmake --build new_grpc/build -- -j4
+                  cmake --build new_grpc/build -- -j$(nproc)
                   sudo cmake --install new_grpc/build
                 fi
 
@@ -279,7 +279,7 @@ jobs:
                 cd build_debug
                 mkdir grpc || :
                 cd grpc
-                ctest -V
+                ulimit -n 4096 && ctest -V
 
           - name: Run tests (mysql)
             # MySQL Benchmarks do not work on new Ubuntu
