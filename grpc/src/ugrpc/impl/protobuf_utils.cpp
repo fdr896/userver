@@ -12,7 +12,6 @@
 #include <userver/ugrpc/protobuf_visit.hpp>
 #include <userver/utils/assert.hpp>
 #include <userver/utils/log.hpp>
-#include <userver/field_options.pb.h>
 
 #include <userver/field_options.pb.h>
 
