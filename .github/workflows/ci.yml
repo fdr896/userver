@@ -172,7 +172,7 @@ jobs:
                   clang-format --version
 
                   git clone --recursive -b v1.45.0 https://github.com/grpc/grpc new_grpc
-                  cmake -S./new_grpc -B./new_grpc/build
+                  cmake -S./new_grpc -B./new_grpc/build -DABSL_PROPAGATE_CXX_STD=ON -DABSL_ENABLE_INSTALL=ON
                   cmake --build new_grpc/build -- -j$(nproc)
                   sudo cmake --install new_grpc/build
                 fi

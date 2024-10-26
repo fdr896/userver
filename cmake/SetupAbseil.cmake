@@ -1,5 +1,11 @@
 # userver does not use Abseil directly, but some libraries need it.
 
+if(abseil-cpp_FOUND)
+  set(ABSL_PROPAGATE_CXX_STD ON)
+  find_package(absl CONFIG REQUIRED)
+  return()
+endif()
+
 include(DownloadUsingCPM)
 
 CPMAddPackage(
