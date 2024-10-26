@@ -18,7 +18,12 @@ function(add_google_benchmark_tests target)
     # This is currently a smoke test. That is, we don't try to detect
     # performance regressions, but instead just run 1 loop iteration and check
     # that the executable doesn't crash or hang.
-    if(${UserverGBench_VERSION} VERSION_LESS "1.8.0")
+    if (USERVER_CONAN)
+      set(BENCHMARK_VERSION ${benchmark_VERSION})
+    else()
+      set(BENCHMARK_VERSION ${UserverGBench_VERSION})
+    endif()
+    if(${BENCHMARK_VERSION} VERSION_LESS "1.8.0")
       set(BENCHMARK_MIN_TIME "0")
     else()
       set(BENCHMARK_MIN_TIME "0.0s")

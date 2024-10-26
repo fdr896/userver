@@ -514,7 +514,13 @@ function(userver_add_ubench_test)
   cmake_parse_arguments(
       ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
-  if(${UserverGBench_VERSION} VERSION_LESS "1.8.0")
+  if (USERVER_CONAN)
+    set(BENCHMARK_VERSION ${benchmark_VERSION})
+  else()
+    set(BENCHMARK_VERSION ${UserverGBench_VERSION})
+  endif()
+
+  if(${BENCHMARK_VERSION} VERSION_LESS "1.8.0")
     set(BENCHMARK_MIN_TIME "0")
   else()
     set(BENCHMARK_MIN_TIME "0.0s")
