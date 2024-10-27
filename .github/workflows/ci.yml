@@ -102,8 +102,45 @@ jobs:
                     /usr/local/share/powershell /usr/share/swift /usr/local/.ghcup || true
                 df -h
 
-          - name: Install packages
+          - name: Add confluentinc repositories
+            if: matrix.os != 'ubuntu-24.04'
             run: |
+                # Adding librdkafka confluent repositories as in https://docs.confluent.io/platform/current/installation/installing_cp/deb-ubuntu.html#get-the-software
+                gpg_retrieve_keyserver() {
+                  GNUPGHOME=$(mktemp -d)
+                  GNUPGHOME="$GNUPGHOME" gpg --no-default-keyring --keyring "/usr/share/keyrings/$2.gpg" --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $1
+                  rm -rf "$GNUPGHOME"
+                  chmod a+r "/usr/share/keyrings/$2.gpg"
+                }
+                gpg_retrieve_keyserver 8B1DA6120C2BF624 confluent
+                printf "\
+                deb [arch=amd64 signed-by=/usr/share/keyrings/confluent.gpg] https://packages.confluent.io/deb/7.6 stable main\n\
+                deb [signed-by=/usr/share/keyrings/confluent.gpg] https://packages.confluent.io/clients/deb $(lsb_release -cs) main\n" \
+                  | sudo tee /etc/apt/sources.list.d/confluent.list
+
+          - name: Install clang-format
+            if: matrix.os == 'ubuntu-20.04'
+            run: |
+                sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+                sudo apt update
+                wget https://apt.llvm.org/llvm.sh
+                chmod +x llvm.sh
+                sudo ./llvm.sh 14
+                sudo apt install clang-format-14
+                sudo ln -sf /usr/bin/clang-format-14 /usr/bin/clang-format
+                clang-format --version
+
+          - name: Install grpc, protobuf and abseil
+            if: matrix.os == 'ubuntu-20.04'
+            run: |
+                git clone --recursive -b v1.45.0 https://github.com/grpc/grpc new_grpc
+                cmake -S./new_grpc -B./new_grpc/build -DABSL_PROPAGATE_CXX_STD=ON -DABSL_ENABLE_INSTALL=ON
+                cmake --build new_grpc/build -- -j$(nproc)
+                sudo cmake --install new_grpc/build
+
+          - name: Add missing repositories
+            run: |
+                sudo apt update
                 # Instructions from https://clickhouse.com/docs/en/getting-started/install/
                 sudo apt install -y apt-transport-https ca-certificates dirmngr
                 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 8919F6BD2B48D754
@@ -123,21 +160,6 @@ jobs:
                       | sudo tee -a /etc/apt/sources.list.d/mongodb-org-7.0.list
                 # Mongo is not officially supported on Ubuntu 24.04, so install it from jammy
 
-                if [ "${{matrix.os}}" != "ubuntu-24.04" ]; then
-                  # Adding librdkafka confluent repositories as in https://docs.confluent.io/platform/current/installation/installing_cp/deb-ubuntu.html#get-the-software
-                  gpg_retrieve_keyserver() {
-                    GNUPGHOME=$(mktemp -d)
-                    GNUPGHOME="$GNUPGHOME" gpg --no-default-keyring --keyring "/usr/share/keyrings/$2.gpg" --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $1
-                    rm -rf "$GNUPGHOME"
-                    chmod a+r "/usr/share/keyrings/$2.gpg"
-                  }
-                  gpg_retrieve_keyserver 8B1DA6120C2BF624 confluent
-                  printf "\
-                  deb [arch=amd64 signed-by=/usr/share/keyrings/confluent.gpg] https://packages.confluent.io/deb/7.6 stable main\n\
-                  deb [signed-by=/usr/share/keyrings/confluent.gpg] https://packages.confluent.io/clients/deb $(lsb_release -cs) main\n" \
-                    | sudo tee /etc/apt/sources.list.d/confluent.list
-                fi
-                
                 # Install Kafka
                 sudo apt install -y default-jre
                 curl https://dlcdn.apache.org/kafka/3.8.0/kafka_2.13-3.8.0.tgz -o kafka.tgz
@@ -147,35 +169,24 @@ jobs:
                 sudo rm -rf /etc/kafka/kafka_2.13-3.8.0
                 ls -lha /etc/kafka
 
+          - name: Install common deps
+            run: |
                 sudo apt update
                 sudo apt install --allow-downgrades -y clickhouse-common-static redis-server postgresql $(cat scripts/docs/en/deps/${{matrix.os}}.md | tr '\n' ' ')
-                if [ "${{matrix.os}}" = "ubuntu-22.04" ]; then
-                  # GH Ubuntu image has libpq version 15+ from pg's repo that is API incompatible with postgresql-14.
-                  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7FCC7D46ACCC4CF8
-                  echo "deb https://apt-archive.postgresql.org/pub/repos/apt jammy-pgdg-archive main" | sudo tee /etc/apt/sources.list.d/pgdg.list
-                  sudo apt update
-                  sudo apt install -y postgresql-15 postgresql-client-15 postgresql-server-dev-15
-                fi
 
-                if [ "${{matrix.info}}" = "g++-8 + debug" ]; then
-                  sudo apt install --allow-downgrades -y g++-8
-                fi
+          - name: Install postgres 15
+            if: matrix.os == 'ubuntu-22.04'
+            run: |
+                # GH Ubuntu image has libpq version 15+ from pg's repo that is API incompatible with postgresql-14.
+                sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7FCC7D46ACCC4CF8
+                echo "deb https://apt-archive.postgresql.org/pub/repos/apt jammy-pgdg-archive main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+                sudo apt update
+                sudo apt install -y postgresql-15 postgresql-client-15 postgresql-server-dev-15
 
-                if [ "${{matrix.os}}" = "ubuntu-20.04" ]; then
-                  sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-                  sudo apt update
-                  wget https://apt.llvm.org/llvm.sh
-                  chmod +x llvm.sh
-                  sudo ./llvm.sh 14
-                  sudo apt install clang-format-14
-                  sudo ln -sf /usr/bin/clang-format-14 /usr/bin/clang-format
-                  clang-format --version
-
-                  git clone --recursive -b v1.45.0 https://github.com/grpc/grpc new_grpc
-                  cmake -S./new_grpc -B./new_grpc/build -DABSL_PROPAGATE_CXX_STD=ON -DABSL_ENABLE_INSTALL=ON
-                  cmake --build new_grpc/build -- -j$(nproc)
-                  sudo cmake --install new_grpc/build
-                fi
+          - name: Install g++-8
+            if: matrix.info == 'g++-8 + debug'
+            run: |
+              sudo apt install --allow-downgrades -y g++-8
 
           - name: Install RabbitMQ packages
             run: |
@@ -274,7 +285,7 @@ jobs:
 
           - name: Run tests (gRPC)
             # TODO: Sanitizer detects bool with value other than 1 or 0
-            if: matrix.info != 'clang-14 + debug + sanitize addr+ub'
+            if: matrix.info != 'clang-14 + debug + sanitize addr+ub' || matrix.info != 'clang-18 + debug + sanitize addr+ub'
             run: |
                 cd build_debug
                 mkdir grpc || :
@@ -282,7 +293,7 @@ jobs:
                 ulimit -n 4096 && ctest -V
 
           - name: Run tests (mysql)
-            # MySQL Benchmarks do not work on new Ubuntu
+            # MySQL benchmarks do not work on new Ubuntu
             if: matrix.os != 'ubuntu-24.04'
             run: |
                 sudo apt install mariadb-server
