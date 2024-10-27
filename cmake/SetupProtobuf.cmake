@@ -10,7 +10,7 @@ function(_userver_set_protobuf_version_category)
       Protobuf_VERSION VERSION_LESS 6.0.0 OR
       Protobuf_VERSION VERSION_GREATER_EQUAL 26.0.0)
     set_property(GLOBAL PROPERTY userver_protobuf_version_category 5)
-  elseif(Protobuf_VERSION VERSION_GREATER 3.20.0 AND
+  elseif(Protobuf_VERSION VERSION_GREATER_EQUAL 3.20.0 AND
       Protobuf_VERSION VERSION_LESS 4.0.0 OR
       Protobuf_VERSION VERSION_GREATER_EQUAL 4.20.0 AND
       Protobuf_VERSION VERSION_LESS 5.0.0 OR
