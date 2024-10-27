@@ -284,8 +284,6 @@ jobs:
 
 
           - name: Run tests (gRPC)
-            # TODO: Sanitizer detects bool with value other than 1 or 0
-            if: matrix.info != 'clang-14 + debug + sanitize addr+ub' || matrix.info != 'clang-18 + debug + sanitize addr+ub'
             run: |
                 cd build_debug
                 mkdir grpc || :
