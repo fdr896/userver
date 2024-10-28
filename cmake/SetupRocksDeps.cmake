@@ -11,7 +11,7 @@ if (NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
     find_package(RocksDB REQUIRED)
   endif()
 
-  if (RocksDB_FOUND)
+  if (TARGET RocksDB::rocksdb)
     return()
   endif()
 endif()
@@ -27,6 +27,6 @@ include(DownloadUsingCPM)
 CPMAddPackage(
   NAME rocksdb
   GITHUB_REPOSITORY facebook/rocksdb
-  GIT_TAG v${USERVER_ROCKSDB_VERSION}
+  GIT_TAG v8.11.3
 )
 add_library(RocksDB::rocksdb ALIAS rocksdb)
