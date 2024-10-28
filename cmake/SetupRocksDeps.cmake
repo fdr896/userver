@@ -11,7 +11,7 @@ if (NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
     find_package(RocksDB REQUIRED)
   endif()
 
-  if (TARGET RocksDB::rocksdb)
+  if (RocksDB_FOUND)
     return()
   endif()
 endif()
