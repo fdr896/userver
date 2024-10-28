@@ -6,7 +6,7 @@ set(USERVER_ROCKSDB_VERSION "8.9.1")
 
 if(NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
   if(USERVER_DOWNLOAD_PACKAGE_ROCKS)
-    find_package(RocksDB REQUIRED)
+    find_package(RocksDB QUIET)
   else()
     find_package(RocksDB REQUIRED)
   endif()
@@ -35,3 +35,6 @@ CPMAddPackage(
   "WITH_TOOLS OFF"
   "USE_RTTI ON"
 )
+
+mark_targets_as_system("${rocksdb_SOURCE_DIR}")
+write_package_stub(rocksdb)

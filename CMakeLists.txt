@@ -131,8 +131,6 @@ option(USERVER_FEATURE_ROCKS "Provide asynchronous driver for Rocks" "${USERVER_
 option(USERVER_FEATURE_YDB "Provide asynchronous driver for YDB" "${USERVER_YDB_DEFAULT}")
 option(USERVER_FEATURE_OTLP "Provide asynchronous OTLP exporters" "${USERVER_LIB_ENABLED_DEFAULT}")
 
-option(USERVER_USE_SYSTEM_ABSEIL "Use system Abseil library" OFF)
-
 set(CMAKE_DEBUG_POSTFIX d)
 
 include(cmake/UserverSetupEnvironment.cmake)
