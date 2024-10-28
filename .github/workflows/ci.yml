@@ -54,6 +54,7 @@ jobs:
                         -DUSERVER_FEATURE_CRYPTOPP_BLAKE2=0
                         -DUSERVER_FEATURE_REDIS_HI_MALLOC=1
                         -DUSERVER_NO_WERROR=1
+                        -DUSERVER_FEATURE_ROCKS=0
                         -DCMAKE_BUILD_TYPE=Release
                     os: ubuntu-20.04
                     info: g++-9 + release
