@@ -4,6 +4,7 @@ if(USERVER_USE_SYSTEM_ABSEIL)
   set(ABSL_PROPAGATE_CXX_STD ON)
   find_package(absl REQUIRED)
   find_package(absl CONFIG REQUIRED)
+  return()
 endif()
 
 include(DownloadUsingCPM)
