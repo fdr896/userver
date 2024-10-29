@@ -205,6 +205,7 @@ add_subdirectory(handlers)
 add_library(${PROJECT_NAME} INTERFACE)
 target_link_libraries(${PROJECT_NAME} INTERFACE ${PROJECT_NAME}-handlers)
 target_link_libraries(${PROJECT_NAME} INTERFACE ${PROJECT_NAME}-internal)
+target_link_libraries(${PROJECT_NAME} INTERFACE ${PROJECT_NAME}-proto)
 
 _userver_install_targets(COMPONENT grpc TARGETS ${PROJECT_NAME})
 
