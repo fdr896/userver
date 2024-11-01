@@ -167,7 +167,6 @@ class UserverConan(ConanFile):
                 transitive_libs=True,
             )
         if self.options.with_kafka:
-            self.requires('lz4/1.9.4')
             self.requires('librdkafka/2.4.0')
 
     def validate(self):
