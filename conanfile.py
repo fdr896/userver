@@ -110,12 +110,12 @@ class UserverConan(ConanFile):
         self.requires('cryptopp/8.7.0')
         self.requires('fmt/8.1.1', transitive_headers=True)
         self.requires('libnghttp2/1.51.0')
-        self.requires('libcurl/7.86.0')
+        self.requires('libcurl/8.10.1')
         self.requires('libev/4.33')
-        self.requires('openssl/1.1.1s')
+        self.requires('openssl/3.3.1')
         self.requires('rapidjson/cci.20220822', transitive_headers=True)
         self.requires('yaml-cpp/0.7.0')
-        self.requires('zlib/1.2.13')
+        self.requires('zlib/1.3.1')
         self.requires('zstd/1.5.5')
 
         if self.options.with_jemalloc:
@@ -142,7 +142,7 @@ class UserverConan(ConanFile):
         if self.options.with_redis:
             self.requires('hiredis/1.0.2')
         if self.options.with_rabbitmq:
-            self.requires('amqp-cpp/4.3.16')
+            self.requires('amqp-cpp/4.3.26')
         if self.options.with_clickhouse:
             self.requires('clickhouse-cpp/2.4.0')
         if self.options.with_utest:
