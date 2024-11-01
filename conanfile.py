@@ -122,25 +122,13 @@ class UserverConan(ConanFile):
             self.requires('jemalloc/5.3.0')
         if self.options.with_grpc or self.options.with_clickhouse:
             self.requires(
-                'abseil/20230125.3',
-                transitive_headers=True,
-                transitive_libs=True,
+                'abseil/20240116.2',
+                force=True,
             )
         if self.options.with_grpc:
             self.requires(
-                'grpc/1.50.1', transitive_headers=True, transitive_libs=True,
+                'grpc/1.65.0', transitive_headers=True, transitive_libs=True,
             )
-            self.requires(
-                'googleapis/cci.20230501',
-                transitive_headers=True,
-                transitive_libs=True,
-            )
-            self.requires(
-                'grpc-proto/cci.20220627',
-                transitive_headers=True,
-                transitive_libs=True,
-            )
-            self.requires('protobuf/3.21.12', force=True)
         if self.options.with_postgresql:
             self.requires('libpq/14.5')
         if self.options.with_mongodb or self.options.with_kafka:
