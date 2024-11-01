@@ -62,6 +62,11 @@ class UserverConan(ConanFile):
         'namespace_begin': 'namespace userver {',
         'namespace_end': '}',
         'mongo-c-driver/*:with_sasl': 'cyrus',
+        'grpc/*:php_plugin': False,
+        'grpc/*:node_plugin': False,
+        'grpc/*:ruby_plugin': False,
+        'grpc/*:csharp_plugin': False,
+        'grpc/*:objective_c_plugin': False,
     }
 
     # scm = {
