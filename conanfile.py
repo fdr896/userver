@@ -124,6 +124,8 @@ class UserverConan(ConanFile):
             self.requires(
                 'abseil/20240116.2',
                 force=True,
+                transitive_headers=True,
+                transitive_libs=True,
             )
         if self.options.with_grpc:
             self.requires(
@@ -135,7 +137,7 @@ class UserverConan(ConanFile):
             self.requires('cyrus-sasl/2.1.27', force=True)
         if self.options.with_mongodb:
             self.requires(
-                'mongo-c-driver/1.27.6',
+                'mongo-c-driver/1.28.0,
                 transitive_headers=True,
                 transitive_libs=True,
             )
