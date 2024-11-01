@@ -109,17 +109,17 @@ class UserverConan(ConanFile):
 
     def requirements(self):
         self.requires('boost/1.86.0', transitive_headers=True)
-        self.requires('c-ares/1.33.1')
-        self.requires('cctz/2.3', transitive_headers=True)
-        self.requires('concurrentqueue/1.0.3', transitive_headers=True)
-        self.requires('cryptopp/8.7.0')
+        self.requires('c-ares/1.34.1')
+        self.requires('cctz/2.4', transitive_headers=True)
+        self.requires('concurrentqueue/1.0.4', transitive_headers=True)
+        self.requires('cryptopp/8.9.0')
         self.requires('fmt/8.1.1', transitive_headers=True)
-        self.requires('libnghttp2/1.51.0')
+        self.requires('libnghttp2/1.61.0')
         self.requires('libcurl/8.10.1')
         self.requires('libev/4.33')
         self.requires('openssl/3.2.2')
         self.requires('rapidjson/cci.20220822', transitive_headers=True)
-        self.requires('yaml-cpp/0.7.0')
+        self.requires('yaml-cpp/0.8.0')
         self.requires('zlib/1.3.1')
         self.requires('zstd/1.5.5')
 
@@ -139,7 +139,7 @@ class UserverConan(ConanFile):
         if self.options.with_postgresql:
             self.requires('libpq/14.5')
         if self.options.with_mongodb or self.options.with_kafka:
-            self.requires('cyrus-sasl/2.1.27', force=True)
+            self.requires('cyrus-sasl/2.1.28', force=True)
         if self.options.with_mongodb:
             self.requires(
                 'mongo-c-driver/1.28.0',
@@ -147,22 +147,22 @@ class UserverConan(ConanFile):
                 transitive_libs=True,
             )
         if self.options.with_redis:
-            self.requires('hiredis/1.0.2')
+            self.requires('hiredis/1.2.0')
         if self.options.with_rabbitmq:
             self.requires('amqp-cpp/4.3.26')
         if self.options.with_clickhouse:
-            self.requires('clickhouse-cpp/2.4.0')
+            self.requires('clickhouse-cpp/2.5.1')
         if self.options.with_utest:
             self.requires(
-                'gtest/1.12.1', transitive_headers=True, transitive_libs=True,
+                'gtest/1.50.0', transitive_headers=True, transitive_libs=True,
             )
             self.requires(
-                'benchmark/1.6.2',
+                'benchmark/1.9.0',
                 transitive_headers=True,
                 transitive_libs=True,
             )
         if self.options.with_kafka:
-            self.requires('librdkafka/2.4.0')
+            self.requires('librdkafka/2.6.0')
 
     def validate(self):
         if self.settings.os == 'Windows':
