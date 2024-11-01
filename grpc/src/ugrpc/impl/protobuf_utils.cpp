@@ -21,16 +21,16 @@ namespace ugrpc::impl {
 
 namespace {
 
+const userver::FieldOptions& GetFieldOptions(const google::protobuf::FieldDescriptor& field) {
+    return field.options().GetExtension(userver::field);
+}
+
 compiler::ThreadLocal kSecretVisitor = [] {
     return ugrpc::FieldsVisitor(
         [](const google::protobuf::FieldDescriptor& field) { return GetFieldOptions(field).secret(); },
         ugrpc::FieldsVisitor::LockBehavior::kNone
     );
 };
-
-const userver::FieldOptions& GetFieldOptions(const google::protobuf::FieldDescriptor& field) {
-    return field.options().GetExtension(userver::field);
-}
 
 }  // namespace
 
