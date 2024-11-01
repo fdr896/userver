@@ -449,12 +449,6 @@ class UserverConan(ConanFile):
         def grpc():
             return ['grpc::grpc'] if self.options.with_grpc else []
 
-        def googleapis():
-            return ['googleapis::googleapis'] if self.options.with_grpc else []
-
-        def grpcproto():
-            return ['grpc-proto::grpc-proto'] if self.options.with_grpc else []
-
         def protobuf():
             return ['protobuf::protobuf'] if self.options.with_grpc else []
 
@@ -547,8 +541,6 @@ class UserverConan(ConanFile):
                         ['core']
                         + grpc()
                         + protobuf()
-                        + googleapis()
-                        + grpcproto()
                     ),
                 },
                 {
