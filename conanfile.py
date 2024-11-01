@@ -137,6 +137,12 @@ class UserverConan(ConanFile):
                 'grpc/1.54.3', transitive_headers=True, transitive_libs=True,
             )
             self.requires(
+                'grpc-proto/cci.20220627', transitive_headers=True, transitive_libs=True,
+            )
+            self.requires(
+                'googleapis/cci.20230501', transitive_headers=True, transitive_libs=True,
+            )
+            self.requires(
                 'protobuf/3.21.12', transitive_headers=True, transitive_libs=True,
             )
         if self.options.with_postgresql:
@@ -449,6 +455,12 @@ class UserverConan(ConanFile):
         def grpc():
             return ['grpc::grpc'] if self.options.with_grpc else []
 
+        def googleapis():
+            return ['googleapis::googleapis'] if self.options.with_grpc else []
+
+        def grpcproto():
+            return ['grpc-proto::grpc-proto'] if self.options.with_grpc else []
+
         def protobuf():
             return ['protobuf::protobuf'] if self.options.with_grpc else []
 
@@ -541,6 +553,8 @@ class UserverConan(ConanFile):
                         ['core']
                         + grpc()
                         + protobuf()
+                        + googleapis()
+                        + grpcproto()
                     ),
                 },
                 {
@@ -661,6 +675,9 @@ class UserverConan(ConanFile):
                 if cmake_component == 'grpc':
                     self.cpp_info.components[conan_component].libs.append(
                         get_lib_name('grpc-internal'),
+                    )
+                    self.cpp_info.components[conan_component].libs.append(
+                        get_lib_name('grpc-proto'),
                     )
                 else:
                     self.cpp_info.components[conan_component].libs = [lib_name]
