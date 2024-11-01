@@ -103,7 +103,7 @@ class UserverConan(ConanFile):
         cmake_layout(self)
 
     def requirements(self):
-        self.requires('boost/1.79.0', transitive_headers=True)
+        self.requires('boost/1.83.0', transitive_headers=True)
         self.requires('c-ares/1.19.1')
         self.requires('cctz/2.3', transitive_headers=True)
         self.requires('concurrentqueue/1.0.3', transitive_headers=True)
@@ -112,7 +112,7 @@ class UserverConan(ConanFile):
         self.requires('libnghttp2/1.51.0')
         self.requires('libcurl/7.86.0')
         self.requires('libev/4.33')
-        self.requires('openssl/1.1.1s')
+        self.requires('openssl/3.3.1')
         self.requires('rapidjson/cci.20220822', transitive_headers=True)
         self.requires('yaml-cpp/0.7.0')
         self.requires('zlib/1.3.1')
@@ -128,7 +128,7 @@ class UserverConan(ConanFile):
             )
         if self.options.with_grpc:
             self.requires(
-                'grpc/1.50.1', transitive_headers=True, transitive_libs=True,
+                'grpc/1.48.4', transitive_headers=True, transitive_libs=True,
             )
             self.requires(
                 'googleapis/cci.20230501',
@@ -167,6 +167,7 @@ class UserverConan(ConanFile):
                 transitive_libs=True,
             )
         if self.options.with_kafka:
+            self.requires('lz4/1.9.4')
             self.requires('librdkafka/2.4.0')
 
     def validate(self):
