@@ -109,7 +109,7 @@ class UserverConan(ConanFile):
 
     def requirements(self):
         self.requires('boost/1.86.0', transitive_headers=True)
-        self.requires('c-ares/1.32.3')
+        self.requires('c-ares/1.33.1')
         self.requires('cctz/2.3', transitive_headers=True)
         self.requires('concurrentqueue/1.0.3', transitive_headers=True)
         self.requires('cryptopp/8.7.0')
@@ -127,14 +127,14 @@ class UserverConan(ConanFile):
             self.requires('jemalloc/5.3.0')
         if self.options.with_grpc or self.options.with_clickhouse:
             self.requires(
-                'abseil/20240116.2',
+                'abseil/20230802.1',
                 force=True,
                 transitive_headers=True,
                 transitive_libs=True,
             )
         if self.options.with_grpc:
             self.requires(
-                'grpc/1.65.0', transitive_headers=True, transitive_libs=True,
+                'grpc/1.54.3', transitive_headers=True, transitive_libs=True,
             )
         if self.options.with_postgresql:
             self.requires('libpq/14.5')
