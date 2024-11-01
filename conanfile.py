@@ -115,7 +115,7 @@ class UserverConan(ConanFile):
         self.requires('openssl/1.1.1s')
         self.requires('rapidjson/cci.20220822', transitive_headers=True)
         self.requires('yaml-cpp/0.7.0')
-        self.requires('zlib/1.2.13')
+        self.requires('zlib/1.3.1')
         self.requires('zstd/1.5.6')
 
         if self.options.with_jemalloc:
@@ -682,7 +682,7 @@ class UserverConan(ConanFile):
                     ].includedirs.append(
                         os.path.join('include', 'function_backports'),
                     )
-                if cmake_component != 'ubench':
+                if cmake_component != 'ubench' and cmake_component != 'grpc-proto':
                     self.cpp_info.components[
                         conan_component
                     ].includedirs.append(
