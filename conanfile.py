@@ -279,13 +279,6 @@ class UserverConan(ConanFile):
                 src=os.path.join(self._build_subfolder, component),
                 keep_path=False,
             )
-            copy(
-                self,
-                pattern='*.so',
-                dst=os.path.join(self.package_folder, 'lib'),
-                src=os.path.join(self._build_subfolder, component),
-                keep_path=False,
-            )
 
         copy_component('core')
         copy_component('universal')
@@ -552,6 +545,11 @@ class UserverConan(ConanFile):
                         + googleapis()
                         + grpcproto()
                     ),
+                },
+                {
+                    'target': 'grpc-proto',
+                    'lib': 'grpc-proto',
+                    'requires': ['core'] + grpc(),
                 },
                 {
                     'target': 'grpc-handlers',
