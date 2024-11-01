@@ -154,7 +154,7 @@ class UserverConan(ConanFile):
             self.requires('clickhouse-cpp/2.5.1')
         if self.options.with_utest:
             self.requires(
-                'gtest/1.50.0', transitive_headers=True, transitive_libs=True,
+                'gtest/1.15.0', transitive_headers=True, transitive_libs=True,
             )
             self.requires(
                 'benchmark/1.9.0',
