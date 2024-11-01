@@ -301,6 +301,15 @@ class UserverConan(ConanFile):
             copy(
                 self,
                 pattern='*',
+                dst=os.path.join(self.package_folder, 'include', 'grpc-proto'),
+                src=os.path.join(
+                    self.source_folder, 'grpc', 'proto',
+                ),
+                keep_path=True,
+            )
+            copy(
+                self,
+                pattern='*',
                 dst=os.path.join(self.package_folder, 'include', 'grpc'),
                 src=os.path.join(
                     self.source_folder, 'grpc', 'handlers', 'include',
@@ -669,7 +678,6 @@ class UserverConan(ConanFile):
                 if cmake_component == 'grpc':
                     self.cpp_info.components[conan_component].libs.append(
                         get_lib_name('grpc-internal'),
-                        get_lib_name('grpc-proto'),
                     )
                 else:
                     self.cpp_info.components[conan_component].libs = [lib_name]
@@ -683,7 +691,7 @@ class UserverConan(ConanFile):
                     ].includedirs.append(
                         os.path.join('include', 'function_backports'),
                     )
-                if cmake_component != 'ubench' and cmake_component != 'grpc-proto':
+                if cmake_component != 'ubench':
                     self.cpp_info.components[
                         conan_component
                     ].includedirs.append(
