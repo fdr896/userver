@@ -301,15 +301,6 @@ class UserverConan(ConanFile):
             copy(
                 self,
                 pattern='*',
-                dst=os.path.join(self.package_folder, 'include', 'grpc-proto'),
-                src=os.path.join(
-                    self.source_folder, 'grpc', 'proto',
-                ),
-                keep_path=True,
-            )
-            copy(
-                self,
-                pattern='*',
                 dst=os.path.join(self.package_folder, 'include', 'grpc'),
                 src=os.path.join(
                     self.source_folder, 'grpc', 'handlers', 'include',
@@ -556,11 +547,6 @@ class UserverConan(ConanFile):
                     ),
                 },
                 {
-                    'target': 'grpc-proto',
-                    'lib': 'grpc-proto',
-                    'requires': ['core'] + grpc(),
-                },
-                {
                     'target': 'grpc-handlers',
                     'lib': 'grpc-handlers',
                     'requires': ['core'] + grpc(),
@@ -681,11 +667,6 @@ class UserverConan(ConanFile):
                     )
                     self.cpp_info.components[conan_component].libs.append(
                         get_lib_name('grpc-proto'),
-                    )
-                    self.cpp_info.components[
-                        conan_component
-                    ].includedirs.append(
-                        os.path.join('include', 'grpc-proto'),
                     )
                 else:
                     self.cpp_info.components[conan_component].libs = [lib_name]
