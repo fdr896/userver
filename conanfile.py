@@ -683,9 +683,11 @@ class UserverConan(ConanFile):
                         os.path.join('include', 'function_backports'),
                     )
                 if cmake_component == 'grpc-proto':
-                    self.cpp_info.components[
+                   self.cpp_info.components[
                         cmake_component
-                    ].includedirs.append('proto')
+                    ].includedirs.append(
+                        os.path.join('include', 'grpc', 'proto'),
+                    )
                 if cmake_component != 'ubench' and cmake_component != 'grpc-proto':
                     self.cpp_info.components[
                         conan_component
