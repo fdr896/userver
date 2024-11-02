@@ -117,7 +117,7 @@ class UserverConan(ConanFile):
         self.requires('libnghttp2/1.61.0')
         self.requires('libcurl/8.10.1')
         self.requires('libev/4.33')
-        self.requires('openssl/3.2.2')
+        self.requires('openssl/3.3.2')
         self.requires('rapidjson/cci.20220822', transitive_headers=True)
         self.requires('yaml-cpp/0.8.0')
         self.requires('zlib/1.3.1')
