@@ -657,6 +657,9 @@ class UserverConan(ConanFile):
                     self.cpp_info.components[conan_component].libs.append(
                         get_lib_name('grpc-proto'),
                     )
+                     self.cpp_info.components[conan_component].libs.append(
+                        get_lib_name('api-common-protos'),
+                    )
                 else:
                     self.cpp_info.components[conan_component].libs = [lib_name]
                 if cmake_component == 'otlp':
