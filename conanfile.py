@@ -306,6 +306,15 @@ class UserverConan(ConanFile):
             )
             copy(
                 self,
+                pattern='*',
+                dst=os.path.join(self.package_folder, 'include', 'google'),
+                src=os.path.join(
+                    self._build_subfolder, 'grpc', 'proto', 'google',
+                ),
+                keep_path=True,
+            )
+            copy(
+                self,
                 pattern='GrpcTargets.cmake',
                 dst=os.path.join(self.package_folder, 'cmake'),
                 src=os.path.join(self.source_folder, 'cmake'),
