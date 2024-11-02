@@ -127,14 +127,14 @@ class UserverConan(ConanFile):
             self.requires('jemalloc/5.3.0')
         if self.options.with_grpc or self.options.with_clickhouse:
             self.requires(
-                'abseil/20230802.1',
+                'abseil/20240116.2',
                 force=True,
                 transitive_headers=True,
                 transitive_libs=True,
             )
         if self.options.with_grpc:
             self.requires(
-                'grpc/1.54.3', transitive_headers=True, transitive_libs=True,
+                'grpc/1.65.0', transitive_headers=True, transitive_libs=True,
             )
             self.requires(
                 'protobuf/5.27.0', transitive_headers=True, transitive_libs=True,
@@ -273,13 +273,6 @@ class UserverConan(ConanFile):
             copy(
                 self,
                 pattern='*.a',
-                dst=os.path.join(self.package_folder, 'lib'),
-                src=os.path.join(self._build_subfolder, component),
-                keep_path=False,
-            )
-            copy(
-                self,
-                pattern='*.so',
                 dst=os.path.join(self.package_folder, 'lib'),
                 src=os.path.join(self._build_subfolder, component),
                 keep_path=False,
