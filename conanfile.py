@@ -53,7 +53,7 @@ class UserverConan(ConanFile):
         'with_postgresql_extra': False,
         'with_redis': True,
         'with_grpc': True,
-        'with_clickhouse': True,
+        'with_clickhouse': False,
         'with_rabbitmq': True,
         'with_utest': True,
         'with_kafka': True,
@@ -128,7 +128,6 @@ class UserverConan(ConanFile):
         if self.options.with_grpc or self.options.with_clickhouse:
             self.requires(
                 'abseil/20240116.2',
-                force=True,
                 transitive_headers=True,
                 transitive_libs=True,
             )
@@ -142,7 +141,7 @@ class UserverConan(ConanFile):
         if self.options.with_postgresql:
             self.requires('libpq/14.5')
         if self.options.with_mongodb or self.options.with_kafka:
-            self.requires('cyrus-sasl/2.1.28', force=True)
+            self.requires('cyrus-sasl/2.1.28')
         if self.options.with_mongodb:
             self.requires(
                 'mongo-c-driver/1.28.0',
