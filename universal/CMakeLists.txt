@@ -126,7 +126,8 @@ if (USERVER_COMPILER_HAS_MACRO_PREFIX_MAP)
     -fmacro-prefix-map=${BIN_LOG_PATH_BASE}=
     -fmacro-prefix-map=${BASE_PREFIX}=
   )
-  if (NOT SRC_LOG_PATH_BASE MATCHES "${BASE_PREFIX}.*" OR NOT "${USERVER_ROOT_DIR}" MATCHES [=[/userver$]=])
+  string(FIND "${SRC_LOG_PATH_BASE}" "${BASE_PREFIX}" _base_prefix_pos)
+  if (NOT _base_prefix_pos EQUAL 0 OR NOT "${USERVER_ROOT_DIR}" MATCHES [=[/userver$]=])
     target_compile_options(userver-internal-compile-options INTERFACE
       -fmacro-prefix-map=${SRC_LOG_PATH_BASE}=
     )
