@@ -56,7 +56,7 @@ private:
 }  // namespace
 
 UTEST_F(RetryOperationFixture, HandleOfInheritorsOfTStatus) {
-    const TestOperationResults data{NYdb::TStatus{kSuccess, NYql:TIssues()}, "qwerty"};
+    const TestOperationResults data{NYdb::TStatus{kSuccess, NYql::TIssues()}, "qwerty"};
     auto res = RetryOperationSync(
         /*retries=*/0,
         [&data](NYdb::NTable::TSession) {
