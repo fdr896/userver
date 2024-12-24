@@ -11,7 +11,6 @@ name: Alpine Linux
 env:
     UBSAN_OPTIONS: print_stacktrace=1
     ASAN_OPTIONS: detect_odr_violation=2
-    CXX: clang++-18
 
 jobs:
     posix:
@@ -34,6 +33,7 @@ jobs:
             run: |
                 pwd
                 cat /etc/alpine-release
+                apk add lld
                 apk add $(cat scripts/docs/en/deps/alpine.md)
 
           - name: Install test dependencies
@@ -52,6 +52,8 @@ jobs:
                 cd build_debug
                 CMAKE_PROGRAM_PATH=/usr/lib/llvm17/bin/ \
                 cmake \
+                    -DCMAKE_C_COMPILER=clang-18 \
+                    -DCMAKE_CXX_COMPILER=clang++-18 \
                     -DCMAKE_BUILD_TYPE=Debug \
                     -DUSERVER_NO_WERROR=OFF \
                     -DUSERVER_BUILD_ALL_COMPONENTS=1 \
@@ -63,6 +65,7 @@ jobs:
                     -DUSERVER_FEATURE_PATCH_LIBPQ=OFF \
                     -DUSERVER_DOWNLOAD_PACKAGE_PROTOBUF=ON \
                     -DUSERVER_DISABLE_RSEQ_ACCELERATION=YES \
+                    -DUSERVER_USE_LD=lld \
                     ..
 
           - name: Compile

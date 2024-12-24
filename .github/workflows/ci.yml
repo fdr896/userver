@@ -67,6 +67,7 @@ jobs:
                         -DUSERVER_FEATURE_REDIS_HI_MALLOC=1
                         -DUSERVER_FORCE_DOWNLOAD_ABSEIL=0
                         -DUSERVER_DOWNLOAD_PACKAGE_ABSEIL=0
+                        -DUSERVER_USE_LD=gold
                     os: ubuntu-20.04
                     info: g++-9 + release
                     tests-flags: '--gtest_filter=-HttpClient.RedirectHeaders:HttpClient.TestUseIPv4v6'
@@ -86,6 +87,7 @@ jobs:
                         -DUSERVER_FEATURE_REDIS_HI_MALLOC=1
                         -DUSERVER_FORCE_DOWNLOAD_ABSEIL=0
                         -DUSERVER_DOWNLOAD_PACKAGE_ABSEIL=0
+                        -DUSERVER_USE_LD=gold
                     os: ubuntu-20.04
                     info: g++-8 + debug
                     tests-flags: '--gtest_filter=-HttpClient.RedirectHeaders:HttpClient.TestUseIPv4v6'
