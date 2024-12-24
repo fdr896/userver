@@ -65,7 +65,7 @@ jobs:
                     -DUSERVER_FEATURE_PATCH_LIBPQ=OFF \
                     -DUSERVER_DOWNLOAD_PACKAGE_PROTOBUF=ON \
                     -DUSERVER_DISABLE_RSEQ_ACCELERATION=YES \
-                    -DUSERVER_USE_LD=lld
+                    -DUSERVER_USE_LD=lld \
                     ..
 
           - name: Compile
