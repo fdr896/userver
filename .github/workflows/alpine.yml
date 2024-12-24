@@ -12,7 +12,7 @@ env:
     UBSAN_OPTIONS: print_stacktrace=1
     ASAN_OPTIONS: detect_odr_violation=2
     CXX: clang++-18
-    C: clang
+    C: clang-18
 
 jobs:
     posix:
