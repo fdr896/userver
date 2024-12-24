@@ -12,6 +12,7 @@ env:
     UBSAN_OPTIONS: print_stacktrace=1
     ASAN_OPTIONS: detect_odr_violation=2
     CXX: clang++-18
+    C: clang
 
 jobs:
     posix:
@@ -34,6 +35,7 @@ jobs:
             run: |
                 pwd
                 cat /etc/alpine-release
+                apk add lld
                 apk add $(cat scripts/docs/en/deps/alpine.md)
 
           - name: Install test dependencies
@@ -63,6 +65,7 @@ jobs:
                     -DUSERVER_FEATURE_PATCH_LIBPQ=OFF \
                     -DUSERVER_DOWNLOAD_PACKAGE_PROTOBUF=ON \
                     -DUSERVER_DISABLE_RSEQ_ACCELERATION=YES \
+                    -DUSERVER_USE_LD=lld
                     ..
 
           - name: Compile
