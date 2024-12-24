@@ -11,8 +11,6 @@ name: Alpine Linux
 env:
     UBSAN_OPTIONS: print_stacktrace=1
     ASAN_OPTIONS: detect_odr_violation=2
-    CXX: clang++-18
-    C: clang-18
 
 jobs:
     posix:
@@ -54,6 +52,8 @@ jobs:
                 cd build_debug
                 CMAKE_PROGRAM_PATH=/usr/lib/llvm17/bin/ \
                 cmake \
+                    -DCMAKE_C_COMPILER=clang-18 \
+                    -DCMAKE_CXX_COMPILER=clang++-18 \
                     -DCMAKE_BUILD_TYPE=Debug \
                     -DUSERVER_NO_WERROR=OFF \
                     -DUSERVER_BUILD_ALL_COMPONENTS=1 \
