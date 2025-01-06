@@ -10,7 +10,6 @@ macro(_userver_module_begin)
       # Custom package name; NAME is used by default
       PACKAGE_NAME
       # For multi-target packages
-      COMMON_NAME
       VERSION
   )
   set(multiValueArgs
@@ -295,17 +294,10 @@ macro(_userver_module_end)
     mark_as_advanced(${required_vars})
   else()
     # Forward to another CMake module, add nice error messages if missing.
-    if(ARG_COMMON_NAME)
-      set(wrapped_package_name "${ARG_COMMON_NAME}")
-    else()
-      set(wrapped_package_name "${current_package_name}")
-    endif()
+    set(wrapped_package_name "${current_package_name}")
     set(find_command_args "${wrapped_package_name}")
     if(ARG_VERSION)
       list(APPEND find_command_args "${ARG_VERSION}")
-    endif()
-    if(ARG_COMMON_NAME)
-      list(APPEND find_command_args COMPONENTS "${name}")
     endif()
     find_package(${find_command_args})
     set("${name}_FOUND" "${${wrapped_package_name}_FOUND}")
@@ -332,15 +324,10 @@ macro(_userver_module_end)
     endif()
   endif()
 
-  if(ARG_COMMON_NAME
-      OR (NOT "${${libraries_variable}}" STREQUAL "")
+  if((NOT "${${libraries_variable}}" STREQUAL "")
       OR (NOT "${${includes_variable}}" STREQUAL ""))
     if(NOT TARGET "${name}")
       add_library("${name}" INTERFACE IMPORTED GLOBAL)
-
-      if(ARG_COMMON_NAME AND TARGET "${ARG_COMMON_NAME}::${name}")
-        target_link_libraries("${name}" INTERFACE "${ARG_COMMON_NAME}::${name}")
-      endif()
 
       if(NOT "${${includes_variable}}" STREQUAL "")
         target_include_directories("${name}" INTERFACE ${${includes_variable}})

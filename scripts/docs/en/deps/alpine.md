@@ -1,4 +1,5 @@
 boost1.84-dev
+boost1.84-static
 clang17-extra-tools
 clang18
 cmake
@@ -11,6 +12,9 @@ hiredis-dev
 jemalloc-dev
 krb5-dev
 libev-dev
+libev-static
+libbson-static
+libbson-static
 lz4-dev
 lz4-static
 make
