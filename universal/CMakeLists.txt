@@ -226,11 +226,6 @@ if (USERVER_SANITIZE AND NOT CMAKE_BUILD_TYPE MATCHES "^Rel")
   target_link_libraries(${PROJECT_NAME} PUBLIC userver-compiler-rt-parts)
 endif()
 
-find_package(ICU COMPONENTS uc i18n data REQUIRED)
-add_library(icuuc ALIAS ICU::uc)
-add_library(icui18n ALIAS ICU::i18n)
-add_library(icudata ALIAS ICU::data)
-
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
     Threads::Threads
@@ -242,9 +237,6 @@ target_link_libraries(${PROJECT_NAME}
     Boost::regex
     OpenSSL::Crypto
     OpenSSL::SSL
-    ICU::uc
-    ICU::i18n
-    ICU::data
 )
 
 if (USERVER_CONAN)
@@ -280,6 +272,18 @@ else()
       libzstd
       CryptoPP
   )
+
+  find_package(ICU COMPONENTS uc i18n data REQUIRED)
+  if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set_target_properties(ICU::uc PROPERTIES IMPORTED_GLOBAL TRUE)
+    set_target_properties(ICU::i18n PROPERTIES IMPORTED_GLOBAL TRUE)
+    set_target_properties(ICU::data PROPERTIES IMPORTED_GLOBAL TRUE)
+  endif()
+  add_library(icuuc ALIAS ICU::uc)
+  add_library(icui18n ALIAS ICU::i18n)
+  add_library(icudata ALIAS ICU::data)
+
+  target_link_libraries(${PROJECT_NAME} PRIVATE ICU::uc ICU::i18n ICU::data)
 endif()
 
 if (CMAKE_SYSTEM_NAME MATCHES "Darwin")

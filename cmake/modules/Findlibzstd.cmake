@@ -21,6 +21,6 @@ _userver_module_find_library(
 
 _userver_module_end()
 
-if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin" AND NOT TARGET zstd)
   add_library(zstd ALIAS libzstd)
 endif()
