@@ -17,6 +17,7 @@ make
 mariadb-dev
 mariadb-static
 mongo-c-driver-dev
+mongo-c-driver-static
 nghttp2-dev
 openldap-dev
 openssl-dev

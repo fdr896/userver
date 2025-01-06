@@ -35,6 +35,7 @@ libkrb5-dev
 libldap2-dev
 librdkafka-dev
 liblz4-dev
+liblzma-dev
 libmariadb-dev
 libmongoc-dev
 libnghttp2-dev
