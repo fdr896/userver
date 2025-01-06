@@ -226,6 +226,11 @@ if (USERVER_SANITIZE AND NOT CMAKE_BUILD_TYPE MATCHES "^Rel")
   target_link_libraries(${PROJECT_NAME} PUBLIC userver-compiler-rt-parts)
 endif()
 
+find_package(ICU COMPONENTS uc i18n data REQUIRED)
+add_library(icuuc ALIAS ICU::uc)
+add_library(icui18n ALIAS ICU::i18n)
+add_library(icudata ALIAS ICU::data)
+
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
     Threads::Threads
@@ -237,6 +242,9 @@ target_link_libraries(${PROJECT_NAME}
     Boost::regex
     OpenSSL::Crypto
     OpenSSL::SSL
+    ICU::uc
+    ICU::i18n
+    ICU::data
 )
 
 if (USERVER_CONAN)
