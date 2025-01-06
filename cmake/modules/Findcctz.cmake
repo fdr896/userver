@@ -12,8 +12,10 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES cctz
-    PATHS /usr/lib/x86_64-linux-gnu
+    NAMES libcctz.a cctz
+    PATHS
+      /usr/lib/x86_64-linux-gnu
+      /opt/homebrew/opt/cctz/lib
 )
 
 _userver_module_end()

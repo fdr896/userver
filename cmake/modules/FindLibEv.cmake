@@ -11,7 +11,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES ev
+    NAMES libev.a ev
 )
 
 _userver_module_end()

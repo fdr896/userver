@@ -1,7 +1,7 @@
 _userver_module_begin(
     NAME libzip
     DEBIAN_NAMES libbz2-dev
-    FORMULA_NAMES libbz2
+    FORMULA_NAMES bzip2
     RPM_NAMES libbz2-dev
     PACMAN_NAMES bzip2
 )

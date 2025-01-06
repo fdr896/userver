@@ -16,7 +16,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES snappy
+    NAMES libsnappy.a snappy
     PATH_SUFFIXES lib
 )
 

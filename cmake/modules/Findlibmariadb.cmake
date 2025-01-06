@@ -11,7 +11,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES mariadb
+    NAMES libmariadb.a mariadb
     PATH_SUFFIXES lib
 )
 

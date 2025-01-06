@@ -13,7 +13,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES yaml-cpp
+    NAMES libyaml-cpp.a yaml-cpp
     PATH_SUFFIXES lib
 )
 

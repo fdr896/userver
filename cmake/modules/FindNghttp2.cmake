@@ -10,7 +10,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES nghttp2
+    NAMES libnghttp2.a nghttp2
 )
 
 _userver_module_end()

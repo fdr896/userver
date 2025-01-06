@@ -274,6 +274,10 @@ else()
   )
 endif()
 
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+  target_link_libraries(${PROJECT_NAME} PRIVATE "-framework Foundation")
+endif()
+
 target_include_directories(${PROJECT_NAME}
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
