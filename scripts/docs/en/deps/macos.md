@@ -1,5 +1,5 @@
 ares
-boost
+boost@1.87
 c-ares
 ccache
 cctz
@@ -12,6 +12,7 @@ git
 google-benchmark
 googletest
 hiredis
+icu4c@76
 jemalloc
 krb5
 libev

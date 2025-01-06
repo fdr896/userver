@@ -62,8 +62,9 @@ jobs:
                 brew install python@3.11
                 brew install lld
 
-                brew link postgresql@16 # postgresql is key-only
+                brew link postgresql@16 # postgresql is keg-only
                 brew link --force zlib # keg-only + need for static linkage
+                brew link --force icu4c@76 # keg-only + need for static boost linkage
 
           - name: Setup ccache
             run: |

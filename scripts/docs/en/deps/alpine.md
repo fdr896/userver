@@ -4,6 +4,7 @@ clang17-extra-tools
 clang18
 cmake
 curl-dev
+curl-static
 gflags-dev
 git
 grpc-cpp
