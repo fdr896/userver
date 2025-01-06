@@ -5,6 +5,7 @@ ccache
 cctz
 cmake
 coreutils
+cryptopp
 cyrus-sasl
 fmt
 git
