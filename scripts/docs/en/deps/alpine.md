@@ -12,7 +12,6 @@ hiredis-dev
 jemalloc-dev
 krb5-dev
 libev-dev
-libev-static
 libbson-static
 libbson-static
 lz4-dev
@@ -41,3 +40,5 @@ snappy-static
 yaml-cpp-dev
 zlib-dev
 zlib-static
+zstd-dev
+zstd-static
