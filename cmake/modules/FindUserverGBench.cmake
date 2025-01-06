@@ -13,11 +13,11 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES benchmark_main
+    NAMES libbenchmark_main.a benchmark_main
 )
 
 _userver_module_find_library(
-    NAMES benchmark
+    NAMES libbenchmark.a benchmark
 )
 
 _userver_module_end()

@@ -44,6 +44,7 @@ jobs:
                 brew install lld
 
                 brew link postgresql@16
+                brew link --force zlib
 
                 brew upgrade
 

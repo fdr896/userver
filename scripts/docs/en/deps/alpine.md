@@ -22,6 +22,7 @@ mariadb-static
 mongo-c-driver-dev
 mongo-c-driver-static
 nghttp2-dev
+nghttp2-static
 openldap-dev
 openssl-dev
 openssl-libs-static
