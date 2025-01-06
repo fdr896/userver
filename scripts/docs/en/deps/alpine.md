@@ -34,3 +34,5 @@ python3-dev
 snappy-dev
 snappy-static
 yaml-cpp-dev
+zlib-dev
+zlib-static
