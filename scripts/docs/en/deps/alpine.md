@@ -19,6 +19,8 @@ mariadb-static
 mongo-c-driver-dev
 nghttp2-dev
 openldap-dev
+openssl-dev
+openssl-libs-static
 postgresql16-dev
 protobuf-c-compiler
 protobuf-c-dev
