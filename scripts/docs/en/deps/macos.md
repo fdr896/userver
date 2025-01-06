@@ -4,6 +4,7 @@ ccache
 cctz
 cmake
 coreutils
+clickhouse-cpp
 cryptopp
 cyrus-sasl
 fmt

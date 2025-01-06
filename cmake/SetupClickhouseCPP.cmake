@@ -1,5 +1,7 @@
 option(USERVER_DOWNLOAD_PACKAGE_CLICKHOUSECPP "Download and setup clickhouse-cpp" ${USERVER_DOWNLOAD_PACKAGES})
 
+find_package(lz4 REQUIRED)
+
 if (NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
   if (USERVER_DOWNLOAD_PACKAGE_CLICKHOUSECPP)
     find_package(clickhouse-cpp QUIET)

@@ -1,5 +1,6 @@
 _userver_module_begin(
     NAME clickhouse-cpp
+    FORMULA_NAMES clickhouse-cpp
 )
 
 _userver_module_find_include(
@@ -10,7 +11,12 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libclickhouse-cpp-lib.so
+    NAMES libclickhouse-cpp-lib.a libclickhouse-cpp-lib.so
+)
+
+_userver_module_find_library(
+    NAMES libcityhash.a
+    PATHS /opt/homebrew/opt/clickhouse-cpp/libexec/lib
 )
 
 _userver_module_end()
