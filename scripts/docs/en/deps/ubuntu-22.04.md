@@ -29,6 +29,7 @@ libgrpc++1
 libgrpc-dev
 libgtest-dev
 libhiredis-dev
+libicu-dev
 libidn11-dev
 libjemalloc-dev
 libkrb5-dev

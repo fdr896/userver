@@ -20,3 +20,7 @@ _userver_module_find_library(
 )
 
 _userver_module_end()
+
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+  add_library(zstd ALIAS libzstd)
+endif()
