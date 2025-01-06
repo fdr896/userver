@@ -1,10 +1,11 @@
 project(userver-mysql CXX)
 
+find_package(ZLIB REQUIRED)
 find_package(libmariadb REQUIRED)
 
 userver_module(mysql
     SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
-    LINK_LIBRARIES_PRIVATE libmariadb
+    LINK_LIBRARIES_PRIVATE libmariadb ZLIB::ZLIB
 
     DBTEST_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/tests"
     UTEST_LINK_LIBRARIES libmariadb

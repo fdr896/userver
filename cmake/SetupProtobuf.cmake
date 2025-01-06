@@ -25,7 +25,7 @@ function(_userver_set_protobuf_version_category)
 endfunction()
 
 if(USERVER_CONAN)
-  find_package(Protobuf REQUIRED)
+  find_package(Protobuf REQUIRED CONFIG)
   _userver_set_protobuf_version_category()
   set(PROTOBUF_PROTOC "${Protobuf_PROTOC_EXECUTABLE}")
   return()
@@ -33,7 +33,6 @@ endif()
 
 if(NOT USERVER_FORCE_DOWNLOAD_PROTOBUF)
   # Use the builtin CMake FindProtobuf
-  set(Protobuf_USE_STATIC_LIBS ON)
   if(USERVER_DOWNLOAD_PACKAGE_PROTOBUF)
     find_package(Protobuf QUIET)
   else()

@@ -17,7 +17,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES mongoc mongoc-1.0
+    NAMES libmongoc-static-1.0.a mongoc mongoc-1.0
 )
 
 _userver_module_end()

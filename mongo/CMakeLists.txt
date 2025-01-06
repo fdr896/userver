@@ -8,8 +8,7 @@ if (USERVER_CONAN)
   add_library(mongoc ALIAS mongo::mongoc_static)
   find_package(cyrus-sasl REQUIRED CONFIG)
 else()
-  find_package(bson REQUIRED)
-  find_package(mongoc REQUIRED)
+  include(SetupMongoDeps)
 endif()
 
 userver_module(mongo

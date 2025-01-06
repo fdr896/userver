@@ -17,7 +17,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES bson bson-1.0
+    NAMES libbson-static-1.0.a bson bson-1.0
 )
 
 _userver_module_end()
