@@ -71,7 +71,7 @@ jobs:
                         -DUSERVER_FEATURE_REDIS_HI_MALLOC=1
                         -DUSERVER_FORCE_DOWNLOAD_ABSEIL=0
                         -DUSERVER_DOWNLOAD_PACKAGE_ABSEIL=0
-                        -DUSERVER_MONGODB_USE_STATIC_LIBS=0
+                        -DUSERVER_MONGODB_USE_CMAKE_CONFIG=0
                     os: ubuntu-20.04
                     info: g++-9 + release
                     id: ubuntu20_gcc9_release
@@ -92,7 +92,7 @@ jobs:
                         -DUSERVER_FEATURE_REDIS_HI_MALLOC=1
                         -DUSERVER_FORCE_DOWNLOAD_ABSEIL=0
                         -DUSERVER_DOWNLOAD_PACKAGE_ABSEIL=0
-                        -DUSERVER_MONGODB_USE_STATIC_LIBS=0
+                        -DUSERVER_MONGODB_USE_CMAKE_CONFIG=0
                     os: ubuntu-20.04
                     info: g++-8 + debug
                     id: ubuntu20_gcc8_debug
