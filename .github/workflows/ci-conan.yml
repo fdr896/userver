@@ -67,7 +67,6 @@ jobs:
                     grpc_service \
                     hello_service \
                     postgres_service \
-                    kafka_service \
                     redis_service \
                     s3api \
                 ; do

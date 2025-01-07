@@ -8,10 +8,10 @@ else()
   include(SetupRdKafka)
   target_link_libraries(RdKafka
     INTERFACE
-      ZLIB::ZLIB libzstd
+      ZLIB::ZLIB
       lz4::lz4 CURL::libcurl
       OpenSSL::SSL OpenSSL::Crypto
-      SASL2::SASL2
+      SASL2::SASL2 zstd::zstd
   )
 endif()
 
