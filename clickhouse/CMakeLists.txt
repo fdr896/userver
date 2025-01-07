@@ -10,7 +10,7 @@ endif()
 
 userver_module(clickhouse
     SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
-    LINK_LIBRARIES_PRIVATE "${CLICKHOUSE_CPP_TARGET}" lz4::lz4
+    LINK_LIBRARIES_PRIVATE "${CLICKHOUSE_CPP_TARGET}" lz4::lz4 absl::int128
 
     UTEST_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*_test.cpp"
     DBTEST_SOURCES
@@ -19,6 +19,8 @@ userver_module(clickhouse
     "${CMAKE_CURRENT_SOURCE_DIR}/src/storages/tests/utils_test.cpp"
     DBTEST_DATABASES clickhouse
 )
+
+target_compile_options(${PROJECT_NAME} PRIVATE -Wno-pedantic)
 
 _userver_directory_install(COMPONENT clickhouse FILES
 	  "${USERVER_ROOT_DIR}/cmake/modules/Findclickhouse-cpp.cmake"
