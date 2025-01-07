@@ -83,7 +83,6 @@ jobs:
                         -DCMAKE_CXX_COMPILER=g++-8
                         -DCMAKE_C_COMPILER=gcc-8
                         -DCMAKE_BUILD_TYPE=Debug
-                        -DUSERVER_USE_LD=gold
                         -DUSERVER_BUILD_ALL_COMPONENTS=1
                         -DUSERVER_BUILD_SAMPLES=1
                         -DUSERVER_BUILD_TESTS=1
