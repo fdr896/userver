@@ -9,6 +9,7 @@ find_package(CURL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(libzstd REQUIRED)
 find_package(lz4 REQUIRED)
+find_package(SASL2 REQUIRED)
 
 if(NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
   if(USERVER_DOWNLOAD_PACKAGE_KAFKA)

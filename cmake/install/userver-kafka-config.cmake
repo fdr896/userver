@@ -12,6 +12,7 @@ if(USERVER_CONAN)
   find_package(RdKafka REQUIRED CONFIG)
 else()
   include("${USERVER_CMAKE_DIR}/modules/Findlz4.cmake")
+  include("${USERVER_CMAKE_DIR}/modules/FindSASL2.cmake")
   include("${USERVER_CMAKE_DIR}/modules/FindRdKafka.cmake")
 endif()
 
