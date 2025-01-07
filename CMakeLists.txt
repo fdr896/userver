@@ -148,6 +148,7 @@ set(ZLIB_USE_STATIC_LIBS ON)
 set(Protobuf_USE_STATIC_LIBS ON)
 set(Boost_USE_STATIC_LIBS ON)
 set(CURL_USE_STATIC_LIBS ON)
+set(Protobuf_VERBOSE ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(UserverSetupEnvironment)

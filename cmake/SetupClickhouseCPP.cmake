@@ -10,7 +10,7 @@ if (NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
   endif()
 
   if (clickhouse-cpp_FOUND)
-    target_compile_options(clickhouse-cpp INTERFACE -Wno-pedantic)
+    target_link_options(clickhouse-cpp INTERFACE -Wno-pedantic)
     return()
   endif()
 endif()
