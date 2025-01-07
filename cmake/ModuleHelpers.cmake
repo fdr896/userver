@@ -7,8 +7,6 @@ macro(_userver_module_begin)
   set(oneValueArgs
       # Target name, also used for package name by default
       NAME
-      # Custom package name; NAME is used by default
-      PACKAGE_NAME
       # For multi-target packages
       VERSION
   )
@@ -225,11 +223,7 @@ macro(_userver_module_end)
   include("${USERVER_CMAKE_DIR}/DetectVersion.cmake")
 
   set(name "${ARG_NAME}")
-  if(ARG_PACKAGE_NAME)
-    set(current_package_name "${ARG_PACKAGE_NAME}")
-  else()
-    set(current_package_name "${ARG_NAME}")
-  endif()
+  set(current_package_name "${ARG_NAME}")
   set(libraries_variable "${ARG_NAME}_LIBRARIES")
   set(includes_variable "${ARG_NAME}_INCLUDE_DIRS")
   set(programs_variable "${ARG_NAME}_EXECUTABLE")
