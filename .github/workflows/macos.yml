@@ -66,6 +66,7 @@ jobs:
                 brew link --force zlib # keg-only + need for static linkage
                 brew link --force icu4c@76 # keg-only + need for static boost linkage
                 brew link --force curl # keg-only
+                brew remove --ignore-dependencies abseil
 
           - name: Setup ccache
             run: |
