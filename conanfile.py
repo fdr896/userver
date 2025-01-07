@@ -163,7 +163,7 @@ class UserverConan(ConanFile):
                 transitive_libs=True,
             )
         if self.options.with_kafka:
-            self.requires('librdkafka/2.6.1')
+            self.requires('librdkafka/2.6.0')
         if self.options.with_s3api:
             self.requires('pugixml/1.14')
 
