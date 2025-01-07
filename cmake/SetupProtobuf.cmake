@@ -68,7 +68,7 @@ CPMAddPackage(
     "protobuf_BUILD_TESTS OFF"
     "protobuf_INSTALL OFF"
     "protobuf_MSVC_STATIC_RUNTIME OFF"
-    "protobuf_ABSL_PROVIDER none"
+    "protobuf_ABSL_PROVIDER package"
 )
 
 set(Protobuf_VERSION "${CPM_PACKAGE_Protobuf_VERSION}")

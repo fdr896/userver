@@ -32,4 +32,6 @@ CPMAddPackage(
 
 mark_targets_as_system("${abseil-cpp_SOURCE_DIR}")
 write_package_stub(absl)
-target_compile_options(absl PUBLIC -Wno-pedantic)
+if(TARGET absl_int128)
+  target_compile_options(absl_int128 PUBLIC -Wno-pedantic)
+endif()
