@@ -126,6 +126,7 @@ macro(_userver_module_find_part)
       PATH_SUFFIXES ${ARG_PATH_SUFFIXES}
       PATHS ${ARG_PATHS}
   )
+  message(DEBUG "STATUS FIND(${ARG_NAMES}) ARGS: ${find_command_args}")
   if("${ARG_PART_TYPE}" STREQUAL "library")
     find_library(${find_command_args})
   elseif("${ARG_PART_TYPE}" STREQUAL "path")
