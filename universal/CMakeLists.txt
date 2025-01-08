@@ -270,7 +270,7 @@ else()
   if(Boost_USE_STATIC_LIBS AND Boost_FOUND AND Boost_VERSION VERSION_LESS 1.75)
     # https://github.com/boostorg/locale/issues/156
     find_package(ICU COMPONENTS uc i18n uc REQUIRED)
-    target_link_libraries(${PROJECT_NAME} PRIVATE ICU::uc ICU::18n ICU::uc)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ICU::uc ICU::i18n ICU::uc)
   endif()
 endif()
 
