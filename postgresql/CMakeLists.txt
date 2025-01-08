@@ -12,6 +12,7 @@ else()
     PROPERTIES COMPILE_FLAGS -DUSERVER_NO_LIBPQ_PATCHES=1
   )
 
+  find_library(PostgreSQL_LIBRARY NAMES libpq.so libpq.dylib REQUIRED)
   find_package(PostgreSQL REQUIRED)
   target_link_libraries(userver-libpq INTERFACE PostgreSQL::PostgreSQL)
 endif()
