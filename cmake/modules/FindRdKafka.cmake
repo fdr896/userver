@@ -12,7 +12,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES librdkafka.a rdkafka
+    NAMES rdkafka
 )
 
 _userver_module_end()

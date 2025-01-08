@@ -9,10 +9,13 @@ _userver_module_begin(
 
 _userver_module_find_include(
     NAMES cctz/civil_time.h
+    PATHS
+      /usr/lib/x86_64-linux-gnu
+      /opt/homebrew/opt/cctz/lib
 )
 
 _userver_module_find_library(
-    NAMES libcctz.a cctz
+    NAMES cctz
     PATHS
       /usr/lib/x86_64-linux-gnu
       /opt/homebrew/opt/cctz/lib

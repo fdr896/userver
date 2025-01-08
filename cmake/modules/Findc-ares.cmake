@@ -13,7 +13,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libcares.a libcares_static.a cares
+    NAMES cares_static cares
 )
 
 _userver_module_end()

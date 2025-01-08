@@ -14,7 +14,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libhiredis.a hiredis
+    NAMES hiredis
 )
 
 _userver_module_end()

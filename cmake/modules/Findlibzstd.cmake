@@ -15,7 +15,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libzstd.a zstd
+    NAMES zstd
     PATH_SUFFIXES lib
 )
 

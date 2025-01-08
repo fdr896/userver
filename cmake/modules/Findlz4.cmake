@@ -11,7 +11,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES liblz4.a lz4
+    NAMES lz4
 )
 
 _userver_module_end()

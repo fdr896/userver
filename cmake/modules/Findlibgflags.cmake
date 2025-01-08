@@ -16,7 +16,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libgflags.a gflags
+    NAMES gflags
     PATH_SUFFIXES lib
 )
 

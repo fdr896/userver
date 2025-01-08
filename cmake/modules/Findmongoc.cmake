@@ -17,7 +17,11 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libmongoc-static-1.0.a mongoc mongoc-1.0
+    NAMES mongoc mongoc-1.0
+    PATHS
+    /usr/include/libmongoc-1.0
+    /usr/local/opt/mongo-c/include/libmongoc-1.0
+    /opt/homebrew/opt/mongo-c-driver/include/libmongoc-1.0
 )
 
 _userver_module_end()

@@ -13,7 +13,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libcryptopp.a cryptlib cryptopp
+    NAMES cryptlib cryptopp
     PATH_SUFFIXES lib
 )
 

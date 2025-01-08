@@ -12,7 +12,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libbz2.a bz2 libbz2
+    NAMES bz2 libbz2
     PATH_SUFFIXES lib
 )
 

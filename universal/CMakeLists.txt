@@ -266,18 +266,6 @@ else()
       libzstd
       CryptoPP
   )
-
-  find_package(ICU COMPONENTS uc i18n data REQUIRED)
-  if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    set_target_properties(ICU::uc PROPERTIES IMPORTED_GLOBAL TRUE)
-    set_target_properties(ICU::i18n PROPERTIES IMPORTED_GLOBAL TRUE)
-    set_target_properties(ICU::data PROPERTIES IMPORTED_GLOBAL TRUE)
-  endif()
-  add_library(icuuc ALIAS ICU::uc)
-  add_library(icui18n ALIAS ICU::i18n)
-  add_library(icudata ALIAS ICU::data)
-
-  target_link_libraries(${PROJECT_NAME} PRIVATE ICU::uc ICU::i18n ICU::data)
 endif()
 
 if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
@@ -394,12 +382,14 @@ _userver_directory_install(COMPONENT universal FILES
     "${USERVER_ROOT_DIR}/cmake/SetupLTO.cmake"
     "${USERVER_ROOT_DIR}/cmake/SetupPGO.cmake"
     "${USERVER_ROOT_DIR}/cmake/SetupLinker.cmake"
+    "${USERVER_ROOT_DIR}/cmake/SetupHomebrew.cmake"
     "${USERVER_ROOT_DIR}/cmake/Sanitizers.cmake"
     "${USERVER_ROOT_DIR}/cmake/AddGoogleTests.cmake"
     "${USERVER_ROOT_DIR}/cmake/DetectVersion.cmake"
     "${USERVER_ROOT_DIR}/cmake/UserverSetupEnvironment.cmake"
     "${USERVER_ROOT_DIR}/cmake/UserverVenv.cmake"
     "${USERVER_ROOT_DIR}/cmake/UserverEmbedFile.cmake"
+    "${USERVER_ROOT_DIR}/cmake/UserverPreferStaticLibs.cmake"
     "${USERVER_ROOT_DIR}/cmake/embedded_config.cmake"
     "${USERVER_ROOT_DIR}/cmake/install/userver-universal-config.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/userver

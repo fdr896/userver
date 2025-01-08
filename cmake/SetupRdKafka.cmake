@@ -4,8 +4,9 @@ option(USERVER_DOWNLOAD_PACKAGE_KAFKA "Download and setup librdkafka if no librd
 
 set(USERVER_KAFKA_VERSION "2.3.0")
 
+include(SetupCURL)
+
 find_package(OpenSSL REQUIRED)
-find_package(CURL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(libzstd REQUIRED)
 find_package(lz4 REQUIRED)

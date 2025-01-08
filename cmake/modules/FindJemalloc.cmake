@@ -19,7 +19,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libjemalloc.a jemalloc
+    NAMES jemalloc
 )
 
 _userver_module_end()

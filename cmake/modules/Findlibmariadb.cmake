@@ -8,10 +8,11 @@ _userver_module_begin(
 
 _userver_module_find_include(
     NAMES mysql/mysql.h mariadb/mysql.h
+    PATH_SUFFIXES lib
 )
 
 _userver_module_find_library(
-    NAMES libmariadb.a mariadb
+    NAMES mariadb
     PATH_SUFFIXES lib
 )
 
