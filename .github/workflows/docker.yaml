@@ -17,7 +17,6 @@ jobs:
                   - cmake-flags: >-
                         -DCMAKE_CXX_STANDARD=17
                         -DCPM_SOURCE_CACHE=~/.cache/CPM
-                        -DUSERVER_USE_STATIC_LIBS=1
                         -DUSERVER_NO_WERROR=0
                         -DUSERVER_BUILD_SAMPLES=1
                         -DUSERVER_BUILD_TESTS=1
