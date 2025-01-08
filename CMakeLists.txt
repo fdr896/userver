@@ -143,12 +143,15 @@ option(USERVER_FEATURE_OTLP "Provide asynchronous OTLP exporters" "${USERVER_LIB
 
 set(CMAKE_DEBUG_POSTFIX d)
 
-set(OPENSSL_USE_STATIC_LIBS ON)
-set(ZLIB_USE_STATIC_LIBS ON)
-set(Protobuf_USE_STATIC_LIBS ON)
-set(Boost_USE_STATIC_LIBS ON)
-set(CURL_USE_STATIC_LIBS ON)
-set(Protobuf_VERBOSE ON)
+option(USERVER_USE_STATIC_LIBS "Turns on dependencies <PackageName>_USE_STATIC_LIBS options" OFF)
+
+if(USERVER_USE_STATIC_LIBS)
+  set(OPENSSL_USE_STATIC_LIBS ON)
+  set(ZLIB_USE_STATIC_LIBS ON)
+  set(Protobuf_USE_STATIC_LIBS ON)
+  set(Boost_USE_STATIC_LIBS ON)
+  set(CURL_USE_STATIC_LIBS ON)
+endif()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(UserverSetupEnvironment)
