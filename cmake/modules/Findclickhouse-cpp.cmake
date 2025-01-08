@@ -11,7 +11,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES libclickhouse-cpp-lib.a libclickhouse-cpp-lib.so
+    NAMES libclickhouse-cpp-lib.a clickhouse-cpp-lib
 )
 
 _userver_module_find_library(
