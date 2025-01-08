@@ -13,7 +13,7 @@ hiredis-dev
 jemalloc-dev
 krb5-dev
 libev-dev
-libbson-static
+libbson-dev
 libbson-static
 lz4-dev
 lz4-static
