@@ -68,6 +68,7 @@ jobs:
                 brew link --force icu4c@76 # keg-only + need for static boost linkage
                 brew link --force curl # keg-only
                 brew link --force cyrus-sasl # keg-only
+                brew link --force openldap # keg-only
                 brew remove --ignore-dependencies abseil
 
           - name: Setup ccache
