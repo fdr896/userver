@@ -21,6 +21,7 @@ mariadb
 mongo-c-driver
 nghttp2
 ninja
+openldap
 openssl
 postgresql@16
 pugixml

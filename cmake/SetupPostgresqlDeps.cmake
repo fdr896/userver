@@ -9,13 +9,14 @@ _userver_macos_set_default_dir(OPENSSL_ROOT_DIR "brew;--prefix;openssl")
 # We need libldap to statically link with libpq
 # There is no FindLdap.cmake and no package config files
 # for ldap library, so need to search for it by hand.
-find_library(LDAP_LIBRARY NAMES libldap.so libldap.dylib)
+find_library(LDAP_LIBRARY NAMES libldap.so libldap.dylib libldap.framework)
 if(NOT LDAP_LIBRARY)
   message(FATAL_ERROR "Failed to find libldap.so.\n"
           "The linux system ldap installs shared objects with very ugly names, "
           "so please install `libldap2-dev` package. "
           "For Mac OS X please install `openldap`.")
 endif()
+message(STATUS "Found ldap: ${LDAP_LIBRARY}")
 
 find_package(PostgreSQLInternal REQUIRED)
 find_package(GssApi REQUIRED)
