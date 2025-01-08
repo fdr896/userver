@@ -7,7 +7,6 @@ macro(_userver_module_begin)
   set(oneValueArgs
       # Target name, also used for package name by default
       NAME
-      # For multi-target packages
       VERSION
   )
   set(multiValueArgs
