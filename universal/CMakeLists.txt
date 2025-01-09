@@ -376,6 +376,7 @@ endif()
 
 _userver_directory_install(COMPONENT universal FILES
     "${USERVER_ROOT_DIR}/cmake/ModuleHelpers.cmake"
+    "${USERVER_ROOT_DIR}/cmake/SetupCURL.cmake"
     "${USERVER_ROOT_DIR}/cmake/SetupGTest.cmake"
     "${USERVER_ROOT_DIR}/cmake/SetupGBench.cmake"
     "${USERVER_ROOT_DIR}/cmake/sanitize.blacklist.txt"

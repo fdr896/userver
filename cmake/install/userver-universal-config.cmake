@@ -17,6 +17,11 @@ find_package(Boost REQUIRED CONFIG COMPONENTS
 )
 find_package(Iconv REQUIRED)
 
+if(Boost_USE_STATIC_LIBS AND Boost_VERSION VERSION_LESS 1.75)
+  # https://github.com/boostorg/locale/issues/156
+  find_package(ICU COMPONENTS uc i18n data REQUIRED)
+endif()
+
 _userver_macos_set_default_dir(OPENSSL_ROOT_DIR "brew;--prefix;openssl")
 find_package(OpenSSL REQUIRED)
 
@@ -55,7 +60,6 @@ include("${USERVER_CMAKE_DIR}/Sanitizers.cmake")
 include("${USERVER_CMAKE_DIR}/UserverSetupEnvironment.cmake")
 include("${USERVER_CMAKE_DIR}/UserverVenv.cmake")
 include("${USERVER_CMAKE_DIR}/UserverEmbedFile.cmake")
-include("${USERVER_CMAKE_DIR}/UserverPreferStaticLibs.cmake")
 
 userver_setup_environment()
 _userver_make_sanitize_blacklist()
