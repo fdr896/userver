@@ -40,6 +40,7 @@ py3-jinja2
 py3-protobuf
 python3
 python3-dev
+rabbitmq-c-dev
 snappy-dev
 snappy-static
 yaml-cpp-dev
