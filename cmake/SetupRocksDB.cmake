@@ -41,5 +41,4 @@ CPMAddPackage(
 )
 
 mark_targets_as_system("${rocksdb_SOURCE_DIR}")
-write_package_stub(rocksdb)
 add_library(RocksDB::rocksdb ALIAS rocksdb)
