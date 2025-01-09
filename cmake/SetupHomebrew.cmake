@@ -3,17 +3,17 @@ option(USERVER_USE_BREW_LIBRARIES "(MacOS) Find package preferes libraries insta
 if(NOT DEFINED $CACHE{USERVER_BREW_PREFIX})
     find_program(BREW_BIN brew)
     if(BREW_BIN)
-    execute_process(
+      execute_process(
         COMMAND ${BREW_BIN} --prefix
         OUTPUT_VARIABLE brew_prefix
         RESULT_VARIABLE brew_prefix_result
         OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
+      )
 
-    if(brew_prefix_result EQUAL 0)
+      if(brew_prefix_result EQUAL 0)
         set(USERVER_BREW_PREFIX "${brew_prefix}" CACHE INTERNAL "Brew prefix")
         message(STATUS "brew prefix is: ${USERVER_BREW_PREFIX}")
-    endif()
+      endif()
     endif()
 endif()
 

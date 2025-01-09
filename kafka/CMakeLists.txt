@@ -2,22 +2,13 @@ project(userver-kafka CXX)
 
 if(USERVER_CONAN)
   find_package(RdKafka REQUIRED CONFIG)
-  set_target_properties(RdKafka::rdkafka PROPERTIES IMPORTED_GLOBAL TRUE)
-  add_library(RdKafka ALIAS RdKafka::rdkafka)
 else()
   include(SetupRdKafka)
-  target_link_libraries(RdKafka
-    INTERFACE
-      ZLIB::ZLIB
-      lz4::lz4 CURL::libcurl
-      OpenSSL::SSL OpenSSL::Crypto
-      SASL2::SASL2 zstd::zstd
-  )
 endif()
 
 userver_module(kafka
   SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
-  LINK_LIBRARIES_PRIVATE RdKafka
+  LINK_LIBRARIES_PRIVATE RdKafka::rdkafka
   DBTEST_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/tests"
   DBTEST_LINK_LIBRARIES userver::kafka-utest
   DBTEST_DATABASES kafka
@@ -37,6 +28,12 @@ if(KAFKA_CPM)
     PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/wrapper/include"
   )
 endif()
+
+_userver_directory_install(COMPONENT kafka
+    FILES
+    "${USERVER_ROOT_DIR}/cmake/SetupRdKafka.cmake"
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/userver"
+)
 
 _userver_directory_install(COMPONENT kafka
     FILES

@@ -11,9 +11,7 @@ find_package(userver REQUIRED COMPONENTS
 if(USERVER_CONAN)
   find_package(RdKafka REQUIRED CONFIG)
 else()
-  include("${USERVER_CMAKE_DIR}/modules/Findlz4.cmake")
-  include("${USERVER_CMAKE_DIR}/modules/FindSASL2.cmake")
-  include("${USERVER_CMAKE_DIR}/modules/FindRdKafka.cmake")
+  include("${USERVER_CMAKE_DIR}/SetupRdKafka.cmake")
 endif()
 
 set(userver_kafka_FOUND TRUE)
