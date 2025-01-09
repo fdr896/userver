@@ -1,7 +1,9 @@
 option(USERVER_DOWNLOAD_PACKAGE_CLICKHOUSECPP "Download and setup clickhouse-cpp" ${USERVER_DOWNLOAD_PACKAGES})
 
-find_package(lz4 REQUIRED)
-include(SetupAbseil)
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+  find_package(lz4 REQUIRED)
+  include(SetupAbseil)
+endif()
 
 if (NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
   if (USERVER_DOWNLOAD_PACKAGE_CLICKHOUSECPP)
@@ -11,11 +13,15 @@ if (NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
   endif()
 
   if (clickhouse-cpp_FOUND)
+    if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+      target_link_libraries(clickhouse-cpp INTERFACE lz4::lz4 absl::int128)
+    endif()
     return()
   endif()
 endif()
 
 include(DownloadUsingCPM)
+include(SetupAbseil)
 
 CPMAddPackage(
     NAME clickhouse-cpp
