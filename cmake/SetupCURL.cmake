@@ -10,7 +10,7 @@ if(NOT USERVER_FORCE_DOWNLOAD_PACKAGES)
   if(USERVER_DOWNLOAD_PACKAGE_CURL)
     find_package(CURL "7.68")
   else()
-    find_package_required_version(CURL "libcurl4-openssl-dev" "7.68")
+    find_package(CURL "7.68" REQUIRED)
   endif()
 
   if (USERVER_USE_STATIC_LIBS)

@@ -4,7 +4,7 @@ option(USERVER_DOWNLOAD_PACKAGE_KAFKA "Download and setup librdkafka if no librd
 
 set(USERVER_KAFKA_VERSION "2.3.0")
 
-include(SetupCURL)
+include("${CMAKE_CURRENT_LIST_DIR}/SetupCURL.cmake")
 
 find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
