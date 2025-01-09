@@ -21,4 +21,6 @@ _userver_module_find_library(
 
 _userver_module_end()
 
-add_library(zstd::zstd ALIAS libzstd)
+if(NOT TARGET zstd::zstd)
+  add_library(zstd::zstd ALIAS libzstd)
+endif()
