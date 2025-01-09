@@ -11,7 +11,7 @@ _userver_module_find_include(
 )
 
 _userver_module_find_library(
-    NAMES clickhouse-cpp-lib-static clickhouse-cpp-lib
+    NAMES clickhouse-cpp-lib
     PATH_SUFFIXES
       clickhouse-cpp
       yandex/clickhouse-cpp
