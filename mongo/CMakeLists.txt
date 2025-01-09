@@ -24,6 +24,7 @@ userver_module(mongo
 )
 
 _userver_directory_install(COMPONENT mongo FILES
+    "${USERVER_ROOT_DIR}/cmake/SetupMongoDeps.cmake"
     "${USERVER_ROOT_DIR}/cmake/modules/Findmongoc.cmake"
     "${USERVER_ROOT_DIR}/cmake/modules/Findbson.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/userver/modules

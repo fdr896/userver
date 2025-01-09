@@ -18,6 +18,9 @@ option(
     "Prepare build of userver to install in system"
     OFF
 )
+if(CMAKE_VERSION GREATER_EQUAL 3.31)
+  cmake_policy(SET CMP0177 NEW)
+endif()
 
 set(USERVER_AVAILABLE_COMPONENTS universal)
 
