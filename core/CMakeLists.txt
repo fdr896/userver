@@ -107,13 +107,11 @@ target_link_libraries(${PROJECT_NAME}
     Boost::program_options
     Boost::iostreams
     Boost::regex
+    Iconv::Iconv
     OpenSSL::Crypto
     OpenSSL::SSL
     ZLIB::ZLIB
 )
-if(NOT Iconv_IS_BUILT_IN)
-  target_link_libraries(${PROJECT_NAME} PRIVATE Iconv::Iconv)
-endif()
 
 add_subdirectory(${USERVER_THIRD_PARTY_DIRS}/llhttp llhttp)
 
