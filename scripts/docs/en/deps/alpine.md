@@ -1,14 +1,17 @@
 boost1.84-dev
 boost1.84-static
+benchmark-dev
 clang17-extra-tools
 clang18
 cmake
+crypto++-dev
 curl-dev
 curl-static
 gflags-dev
 git
 grpc-cpp
 grpc-dev
+gtest-dev
 hiredis-dev
 jemalloc-dev
 krb5-dev
